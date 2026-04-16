@@ -1,8 +1,6 @@
 package expensetracker.userservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +17,13 @@ import java.time.Instant;
 public class UserProfile {
 
     @Id
+    @Column(name = "user_id")
     private String userId;
 
+    @Column(unique = true)
     private String username;
+
+    @Column(unique = true)
     private String email;
 
     private String firstName;

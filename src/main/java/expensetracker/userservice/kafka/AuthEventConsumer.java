@@ -1,7 +1,7 @@
 package expensetracker.userservice.kafka;
 
 import expensetracker.userservice.event.AuthUserRegisteredEvent;
-import expensetracker.userservice.service.UserProfileService;
+import expensetracker.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthEventConsumer {
 
-    private final UserProfileService userProfileService;
+    private final UserService userService;
 
     @KafkaListener(topics = KafkaTopics.USER_REGISTER)
     public void consume(AuthUserRegisteredEvent event) {
-        userProfileService.createUserProfile(event);
+        userService.createUserProfileFromEvent(event);
     }
 
 }
